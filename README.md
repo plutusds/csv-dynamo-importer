@@ -11,7 +11,15 @@ pipenv install                    # if you have pipenv installed
 pip3 install -r requirements.txt  # otherwise
 ```
 
-### 2. Run script
+### 2. Prerequisites
+
+* Create a table in DynamoDB with proper hash-key and range-key.
+* Set proper Provisioned Throughput (or on-demand).
+* Check your CSV headers.
+
+> `snake_case` header names will be automatically converted to `camelCase`.
+
+### 3. Run script
 
 ```bash
 python3 main.py sample.csv table-name
