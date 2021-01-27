@@ -37,7 +37,7 @@ def main():
         # read first line in file (header)
         headers = next(tokens)
         headers = [snake_to_camel_case(header) for header in headers]
-        prnt("Extracted Headers from CSV:", headers)
+        prnt("Extracted headers from CSV:", headers)
 
         # rest is data
         full_record_length = 0

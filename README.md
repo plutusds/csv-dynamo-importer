@@ -54,7 +54,7 @@ Your arguments:
 │writeRate│0                                 │
 │delimiter│,                                 │
 ╰─────────┴──────────────────────────────────╯
-Extracted Headers from CSV: 
+Extracted headers from CSV: 
 ╭──┬──────────────────╮
 │0 │id                │
 │1 │createdAt         │
