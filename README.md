@@ -35,3 +35,50 @@ optional arguments:
   -h, --help  show this help message and exit
 
 ```
+
+## Example
+
+```text
+Your arguments: 
+╭─────────┬──────────────────────────────────╮
+│csvFile  │frooto-frooto-sample.csv          │
+│tableName│pregnancy-tracker-server-qa-Frooto│
+│writeRate│0                                 │
+│delimiter│,                                 │
+╰─────────┴──────────────────────────────────╯
+Extracted Headers from CSV: 
+╭──┬──────────────────╮
+│0 │id                │
+│1 │createdAt         │
+│2 │creator           │
+│3 │deletedAt         │
+│4 │updateRequestId   │
+│5 │updatedAt         │
+│6 │updater           │
+│7 │balance           │
+│8 │currency          │
+│9 │fee               │
+│10│firstDepositAt    │
+│11│tradable          │
+│12│type              │
+│13│userId            │
+│14│withdrawalDeferred│
+│15│version           │
+╰──┴──────────────────╯
+Found 1000 row(s) and 1000 were valid.
+Memory size for the records is 8856 bytes.
+Split data into 1MB chunks...
+Splitting: 100%|███████████████████████████████████| 1000/1000 [00:00<00:00, 224270.35it/s]
+Created 1 chunk(s) with 1MB data. Totally containing 1000 record(s). Lost 0 record(s).
+Execute import? (Y/N) : Y
+Upload starts...
+Items in chunk: 100%|█████████████████████████████████| 1000/1000 [00:01<00:00, 537.98it/s]
+Chunks: 100%|████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.86s/it]
+Now we scan the whole table to verify the result...
+Full scan length is 1000.
+Done! Goodbye!
+```
+
+## Author
+
+Kevin Kim
