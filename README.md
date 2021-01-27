@@ -19,11 +19,11 @@ python3 main.py sample.csv table-name
 
 ### Arguments
 
-```bash
-➜ python3 main.py -h                                                     
+```
+> python3 main.py -h                                                     
 usage: main.py [-h] csvFile tableName [writeRate] [delimiter]
 
-Import CSV to DynamoDB Table. CSV headers must map to DynamoDB Table field names.
+Import CSV to DynamoDB Table. CSV headers must be identical to DynamoDB Table field names (at least for hash-key and range-key).
 
 positional arguments:
   csvFile     Path to CSV file
@@ -33,4 +33,5 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
+
 ```
