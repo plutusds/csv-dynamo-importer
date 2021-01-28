@@ -99,8 +99,8 @@ Uploading: 100%|█████████████████████�
 Remaining size is 248 and length is 19.
 Uploading: 100%|█████████████████████████████████████████████████████████████████| 1000/1000 [00:00<00:00, 182779.30it/s]
 Now we scan the whole table to verify the result...
-Full scan length is 1000.
-Done! Goodbye!
+Full scan length is 1000 and full record length is 1000.
+Result verification done! Goodbye!
 ```
 
 ## Author

@@ -86,13 +86,13 @@ def main():
 
         print("Now we scan the whole table to verify the result...")
         full_scan_length = dynamo.count_all_rows()
-        print(f"Full scan length is {full_scan_length}.")
+        print(f"Full scan length is {full_scan_length} and full record length is {full_record_length}.")
 
         if full_record_length != full_scan_length:
-            print("Something went wrong... Consider retry import.")
+            print("Something went wrong... Length not matched, consider retrying import from scratch.")
             return
 
-        print("Result validation done! Goodbye!")
+        print("Result verification done! Goodbye!")
 
 
 if __name__ == "__main__":
