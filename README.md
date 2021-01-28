@@ -29,7 +29,7 @@ python3 main.py sample.csv table-name
 
 ```
 > python3 main.py -h                                                     
-usage: main.py [-h] csvFile tableName [offset] [writeRate] [delimiter]
+usage: main.py [-h] csvFile tableName [offset] [chunkSize] [writeRate] [delimiter]
 
 Import CSV to DynamoDB Table. CSV headers must be identical to DynamoDB Table field names (at least for hash-key and range-key).
 
