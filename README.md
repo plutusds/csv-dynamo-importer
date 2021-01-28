@@ -77,7 +77,8 @@ Extracted headers from CSV:
 │14│withdrawalDeferred│
 │15│version           │
 ╰──┴──────────────────╯
-Read only 1KB chunks
+Continue? (Y/N) : Y
+Process every 1KB chunk.
 Reached size above 1KB (1000). Current size is 1080 and length is 109.
 Uploading: 100%|███████████████████████████████████████████████████████████████████████| 109/109 [00:01<00:00, 73.37it/s]
 Reached size above 1KB (1000). Current size is 1080 and length is 109.

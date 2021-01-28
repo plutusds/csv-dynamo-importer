@@ -55,11 +55,15 @@ def main():
         headers = [snake_to_camel_case(header) for header in headers]
         prnt("Extracted headers from CSV:", headers)
 
+        if input("Continue? (Y/N) : ") != "Y":
+            print("Bye!")
+            return
+
         # rest is data
         full_record_length = 0
         bulk_item = []
 
-        print(f"Read only {max_chunk_size_string} chunks")
+        print(f"Process every {max_chunk_size_string} chunk.")
         for token in tokens:
             full_record_length += 1
             if full_record_length <= args.offset:
