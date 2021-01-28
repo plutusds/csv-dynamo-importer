@@ -92,7 +92,7 @@ def main():
             print("Something went wrong... Consider retry import.")
             return
 
-        print(f"Done! Goodbye!")
+        print("Result validation done! Goodbye!")
 
 
 if __name__ == "__main__":

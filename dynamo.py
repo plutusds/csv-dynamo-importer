@@ -14,9 +14,8 @@ class Dynamo:
     def batch_write(self, bulk_item, ends):
         begins = ends - len(bulk_item)
 
-        print(f"Upload starts...")
         with self._table.batch_writer() as writer:
-            for item in tqdm(bulk_item, desc="Items in chunk", initial=begins, total=ends):
+            for item in tqdm(bulk_item, desc="Uploading", initial=begins, total=ends):
                 writer.put_item(Item=item)
 
     def count_all_rows(self):
