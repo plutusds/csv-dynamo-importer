@@ -37,6 +37,7 @@ positional arguments:
   csvFile     Path to CSV file
   tableName   DynamoDB Table name
   offset      Offset index (default:0)
+  chunkSize   Chunk size (default:10MB)
   writeRate   Number of writes to table per second (default:0 - on-demand)
   delimiter   Delimiter for CSV file (default=,)
 
@@ -47,12 +48,13 @@ optional arguments:
 ## Example
 
 ```text
-> p main.py frooto-sample.csv Wallet
+> p main.py frooto-sample.csv Wallet 0 1KB
 Your arguments: 
 ╭─────────┬──────────────────────────────────╮
 │csvFile  │frooto-sample.csv                 │
 │tableName│Wallet                            │
 │offset   │0                                 │
+│chunkSize│1KB                               │
 │writeRate│0                                 │
 │delimiter│,                                 │
 ╰─────────┴──────────────────────────────────╯
