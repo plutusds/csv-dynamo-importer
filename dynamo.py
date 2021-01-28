@@ -1,3 +1,5 @@
+from log import logger
+
 import boto3
 from tqdm import tqdm
 
@@ -15,7 +17,8 @@ class Dynamo:
         begins = ends - len(bulk_item)
 
         with self._table.batch_writer() as writer:
-            for item in tqdm(bulk_item, desc="Uploading", initial=begins, total=ends):
+            for i, item in tqdm(enumerate(bulk_item), desc="Uploading", initial=begins, total=ends):
+                logger.info(begins + i)
                 writer.put_item(Item=item)
 
     def count_all_rows(self):

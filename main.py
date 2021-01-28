@@ -1,3 +1,4 @@
+import json
 import sys
 import argparse
 from csv import reader
@@ -13,6 +14,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument("csvFile", help="Path to CSV file")
 parser.add_argument("tableName", help="DynamoDB Table name")
 parser.add_argument("offset", default=0, type=int, nargs="?", help="Offset index (default:0)")
+parser.add_argument("total", default=0, type=int, nargs="?", help="Total index (default:0 - full length)")
 parser.add_argument("chunkSize", default="10MB", nargs="?", help="Chunk size (default:10MB)")
 parser.add_argument("writeRate", default=0, type=int, nargs="?", help="Number of writes to table per second (default:0 - on-demand)")
 parser.add_argument("delimiter", default=",", nargs="?", help="Delimiter for CSV file (default=,)")
@@ -51,9 +53,26 @@ def main():
     with open(args.csvFile) as csv_file:
         tokens = reader(csv_file, delimiter=args.delimiter)
         # read first line in file (header)
-        headers = next(tokens)
-        headers = [snake_to_camel_case(header) for header in headers]
-        prnt("Extracted headers from CSV:", headers)
+        original_headers = next(tokens)
+        original_headers = [snake_to_camel_case(header) for header in original_headers]
+        prnt("Extracted headers from CSV:", original_headers)
+
+        headers = []
+        alter_headers = input("Would like to alter headers? (Y/N) : ")
+        if alter_headers == "Y":
+            print(f"Original headers were : {original_headers}")
+            new_headers = input("Please input new headers : ")
+            new_headers = json.loads(new_headers.replace("'", '"'))
+            if len(original_headers) != len(new_headers):
+                print(f"Original headers ({len(original_headers)}) and new headers ({len(new_headers)}) length are different.")
+                return
+            headers = new_headers
+            prnt("New headers", headers)
+        elif alter_headers == "N":
+            headers = original_headers
+        else:
+            print("Invalid input.")
+            return
 
         if input("Continue? (Y/N) : ") != "Y":
             print("Bye!")
@@ -82,6 +101,8 @@ def main():
                 print(f"Reached size above {max_chunk_size_string} ({max_chunk_size}). Current size is {size} and length is {len(bulk_item)}.")
                 dynamo.batch_write(bulk_item, full_record_length)
                 bulk_item = []
+            if 0 < args.total <= full_record_length:
+                break
         if bulk_item:
             # still have items in bulk
             size = sys.getsizeof(bulk_item)

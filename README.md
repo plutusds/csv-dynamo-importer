@@ -29,7 +29,7 @@ python3 main.py sample.csv table-name
 
 ```
 > python3 main.py -h                                                     
-usage: main.py [-h] csvFile tableName [offset] [chunkSize] [writeRate] [delimiter]
+usage: main.py [-h] csvFile tableName [offset] [total] [chunkSize] [writeRate] [delimiter]
 
 Import CSV to DynamoDB Table. CSV headers must be identical to DynamoDB Table field names (at least for hash-key and range-key).
 
@@ -37,6 +37,7 @@ positional arguments:
   csvFile     Path to CSV file
   tableName   DynamoDB Table name
   offset      Offset index (default:0)
+  total       Total index (default:0 - full length)
   chunkSize   Chunk size (default:10MB)
   writeRate   Number of writes to table per second (default:0 - on-demand)
   delimiter   Delimiter for CSV file (default=,)
@@ -48,12 +49,13 @@ optional arguments:
 ## Example
 
 ```text
-> p main.py frooto-sample.csv Wallet 0 1KB
+> python3 main.py frooto-sample.csv Wallet 0 0 1KB
 Your arguments: 
 ╭─────────┬──────────────────────────────────╮
 │csvFile  │frooto-sample.csv                 │
 │tableName│Wallet                            │
 │offset   │0                                 │
+│total    │0                                 │
 │chunkSize│1KB                               │
 │writeRate│0                                 │
 │delimiter│,                                 │
@@ -77,6 +79,7 @@ Extracted headers from CSV:
 │14│withdrawalDeferred│
 │15│version           │
 ╰──┴──────────────────╯
+Would like to alter headers? (Y/N) : N
 Continue? (Y/N) : Y
 Process every 1KB chunk.
 Reached size above 1KB (1000). Current size is 1080 and length is 109.
