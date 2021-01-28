@@ -1,6 +1,6 @@
 # csv-dynamo-importer
 
-A script to import CSV data into DynamoDB.
+A fault tolerant script to import large volume CSV data into DynamoDB.
 
 ## Usage
 
@@ -29,28 +29,30 @@ python3 main.py sample.csv table-name
 
 ```
 > python3 main.py -h                                                     
-usage: main.py [-h] csvFile tableName [writeRate] [delimiter]
+usage: main.py [-h] csvFile tableName [offset] [writeRate] [delimiter]
 
 Import CSV to DynamoDB Table. CSV headers must be identical to DynamoDB Table field names (at least for hash-key and range-key).
 
 positional arguments:
   csvFile     Path to CSV file
   tableName   DynamoDB Table name
+  offset      Offset index (default:0)
   writeRate   Number of writes to table per second (default:0 - on-demand)
   delimiter   Delimiter for CSV file (default=,)
 
 optional arguments:
   -h, --help  show this help message and exit
-
 ```
 
 ## Example
 
 ```text
+> p main.py frooto-sample.csv Wallet
 Your arguments: 
 ╭─────────┬──────────────────────────────────╮
-│csvFile  │frooto-frooto-sample.csv          │
-│tableName│pregnancy-tracker-server-qa-Frooto│
+│csvFile  │frooto-sample.csv                 │
+│tableName│Wallet                            │
+│offset   │0                                 │
 │writeRate│0                                 │
 │delimiter│,                                 │
 ╰─────────┴──────────────────────────────────╯
@@ -73,15 +75,37 @@ Extracted headers from CSV:
 │14│withdrawalDeferred│
 │15│version           │
 ╰──┴──────────────────╯
-Found 1000 row(s) and 1000 were valid.
-Memory size for the records is 8856 bytes.
-Split data into 1MB chunks...
-Splitting: 100%|███████████████████████████████████| 1000/1000 [00:00<00:00, 224270.35it/s]
-Created 1 chunk(s) with 1MB data. Totally containing 1000 record(s). Lost 0 record(s).
-Execute import? (Y/N) : Y
+Read only 1KB chunks
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
 Upload starts...
-Items in chunk: 100%|█████████████████████████████████| 1000/1000 [00:01<00:00, 537.98it/s]
-Chunks: 100%|████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.86s/it]
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 109/109 [00:00<00:00, 159.70it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 218/218 [00:00<00:00, 196.32it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 327/327 [00:01<00:00, 102.31it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 436/436 [00:00<00:00, 696.08it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 545/545 [00:00<00:00, 739.10it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 654/654 [00:00<00:00, 680.05it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 763/763 [00:00<00:00, 799.14it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 872/872 [00:00<00:00, 632.94it/s]
+Reached size above 1KB (1000). Current size is 1080 and length is 109.
+Upload starts...
+Items in chunk: 100%|██████████████████████████████████████████████████████████████████████████████| 981/981 [00:00<00:00, 721.88it/s]
+Remaining size is 248 and length is 19.
+Upload starts...
+Items in chunk: 100%|█████████████████████████████████████████████████████████████████████████| 1000/1000 [00:00<00:00, 211946.21it/s]
 Now we scan the whole table to verify the result...
 Full scan length is 1000.
 Done! Goodbye!
