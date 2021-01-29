@@ -18,7 +18,7 @@ class Dynamo:
 
         with self._table.batch_writer() as writer:
             for i, item in tqdm(enumerate(bulk_item), desc="Uploading", initial=begins, total=ends):
-                logger.info(begins + i)
+                logger.info(begins + i + 1)
                 writer.put_item(Item=item)
 
     def count_all_rows(self):
