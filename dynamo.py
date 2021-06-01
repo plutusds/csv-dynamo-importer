@@ -26,9 +26,6 @@ class Dynamo:
         done = False
         start_key = None
         scan_kwargs = {
-            # 'FilterExpression': Key('year').between(*year_range),
-            # 'ProjectionExpression': "#yr, title, info.rating",
-            # 'ExpressionAttributeNames': {"#yr": "year"}
         }
         # Pagination with LastEvaluatedKey
         while not done:

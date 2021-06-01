@@ -49,11 +49,11 @@ optional arguments:
 ## Example
 
 ```text
-> python3 main.py frooto-sample.csv Wallet 0 0 1KB
+> python3 main.py sample.csv Wallet 0 0 1KB
 Your arguments: 
 ╭─────────┬──────────────────────────────────╮
-│csvFile  │frooto-sample.csv                 │
-│tableName│Wallet                            │
+│csvFile  │sample.csv                        │
+│tableName│Sample                            │
 │offset   │0                                 │
 │total    │0                                 │
 │chunkSize│1KB                               │
