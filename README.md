@@ -1,12 +1,17 @@
-# csv-dynamo-importer
+# CSV-Dynamo Importer
 
-A fault tolerant script to import large volume CSV data into DynamoDB.
+A fault tolerant script to import large volume CSV data into DynamoDB.  
+
+> `CSV -> DynamoDB`
 
 ## Usage
 
-### 1. Install dependencies
+### 1. Clone this repo and Install dependencies
 
 ```bash
+git clone https://github.com/plutusds/csv-dynamo-importer.git
+cd csv-dynamo-importer
+
 pipenv install                    # if you have pipenv installed
 pip3 install -r requirements.txt  # otherwise
 ```
@@ -49,7 +54,7 @@ optional arguments:
 ## Example
 
 ```text
-> python3 main.py sample.csv Wallet 0 0 1KB
+> python3 main.py sample.csv Sample 0 0 1KB
 Your arguments: 
 ╭─────────┬──────────────────────────────────╮
 │csvFile  │sample.csv                        │
